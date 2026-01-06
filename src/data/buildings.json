@@ -1,5 +1,4 @@
-const buildings = [
-  // --- TIER 1: LOGISTICS (Basic) ---
+[
   {
     "id": "belt_basic",
     "name": "Basic Conveyor",
@@ -48,7 +47,6 @@ const buildings = [
       "income": 1
     }
   },
-  // --- TIER 2: FLUID DYNAMICS (Liquid Cooling) ---
   {
     "id": "pipe_fluid",
     "name": "Coolant Pipe",
@@ -85,7 +83,6 @@ const buildings = [
       "income": 5
     }
   },
-  // --- TIER 3: AUTONOMOUS DRONES (Airborne) ---
   {
     "id": "drone_port",
     "name": "Drone Station",
@@ -122,13 +119,12 @@ const buildings = [
       "income": 25
     }
   },
-  // --- TIER 4: QUANTUM ENTANGLEMENT ---
   {
     "id": "quantum_link",
     "name": "Q-Link",
     "tier": 4,
     "description": "Instant item transport between nodes.",
-    "price": 1.5e6,
+    "price": 1500000,
     "stats": {
       "heat": 200,
       "power": 500,
@@ -140,7 +136,7 @@ const buildings = [
     "name": "Cryo Stasis",
     "tier": 4,
     "description": "Freezes heat generation in area. High power cost.",
-    "price": 4.5e6,
+    "price": 4500000,
     "stats": {
       "heat": -500,
       "power": 1000,
@@ -152,20 +148,19 @@ const buildings = [
     "name": "Q-Bit Loom T4",
     "tier": 4,
     "description": "Quantum superposition processing. 125x T1 output.",
-    "price": 1.2e7,
+    "price": 12000000,
     "stats": {
       "heat": 400,
       "power": 800,
       "income": 125
     }
   },
-  // --- TIER 5: ANTIMATTER ---
   {
     "id": "antimatter_containment",
     "name": "A.M. Containment",
     "tier": 5,
     "description": "Generates massive power but risks explosion.",
-    "price": 8.5e7,
+    "price": 85000000,
     "stats": {
       "heat": 2000,
       "power": 5000,
@@ -177,20 +172,19 @@ const buildings = [
     "name": "Zero-Point Engine T5",
     "tier": 5,
     "description": "Harvests vacuum energy. 625x T1 output.",
-    "price": 2.5e8,
+    "price": 250000000,
     "stats": {
       "heat": 5000,
       "power": 2500,
       "income": 625
     }
   },
-  // --- TIER 6: VOID MANIPULATION ---
   {
     "id": "void_siphon",
     "name": "Void Siphon",
     "tier": 6,
     "description": "Extracts value from non-existence.",
-    "price": 5.0e9,
+    "price": 5000000000,
     "stats": {
       "heat": 0,
       "power": 50000,
@@ -202,23 +196,22 @@ const buildings = [
     "name": "Event Horizon T6",
     "tier": 6,
     "description": "Computes using singularity physics. 3125x T1 output.",
-    "price": 1.5e10,
+    "price": 15000000000,
     "stats": {
       "heat": 20000,
       "power": 100000,
       "income": 3125
     }
   },
-  // --- TIER 7: NEURO-TRANSCENDENCE ---
   {
     "id": "neuro_terminal",
     "name": "Neuro Terminal",
     "tier": 7,
     "description": "The gateway to the digital afterlife.",
-    "price": 1.0e12,
+    "price": 1000000000000,
     "stats": {
       "heat": 100000,
-      "power": 1.0e6,
+      "power": 1000000,
       "noise": 1000
     }
   },
@@ -227,13 +220,11 @@ const buildings = [
     "name": "Omniscience Core T7",
     "tier": 7,
     "description": "Infinite calculation. 15625x T1 output.",
-    "price": 5.0e12,
+    "price": 5000000000000,
     "stats": {
       "heat": 500000,
-      "power": 5.0e6,
+      "power": 5000000,
       "income": 15625
     }
   }
-];
-
-export default buildings;
+]
