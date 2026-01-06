@@ -208,7 +208,7 @@ function App() {
   const activateOverclock = () => {
     // Mock Ad Watch
     // In real app, show ad modal, wait for callback
-    const confirmed = window.confirm("Watch 30s Ad for 300% Boost?");
+    const confirmed = window.confirm("30초 광고를 시청하고 300% 부스트를 받으시겠습니까?");
     if (confirmed) {
       setOverclockActive(true);
       setOverclockTimeLeft(600); // 10 minutes
@@ -236,11 +236,11 @@ function App() {
         </main>
         {/* Footer */}
         <footer className="h-12 border-t border-slate-800 bg-slate-900 flex items-center justify-center gap-6 text-[10px] text-slate-500 font-mono">
-          <button onClick={() => navigateTo('game')} className="hover:text-neon-blue">GAME</button>
-          <button onClick={() => navigateTo('guide')} className="hover:text-neon-blue">GUIDE</button>
-          <button onClick={() => navigateTo('about')} className="hover:text-neon-blue">ABOUT</button>
-          <button onClick={() => navigateTo('privacy')} className="hover:text-neon-blue">PRIVACY</button>
-          <button onClick={() => navigateTo('tos')} className="hover:text-neon-blue">TERMS</button>
+          <button onClick={() => navigateTo('game')} className="hover:text-neon-blue">게임</button>
+          <button onClick={() => navigateTo('guide')} className="hover:text-neon-blue">가이드</button>
+          <button onClick={() => navigateTo('about')} className="hover:text-neon-blue">소개</button>
+          <button onClick={() => navigateTo('privacy')} className="hover:text-neon-blue">개인정보</button>
+          <button onClick={() => navigateTo('tos')} className="hover:text-neon-blue">약관</button>
           <span>© 2026 CARAVAGGIO AI</span>
         </footer>
       </div>
@@ -266,20 +266,20 @@ function App() {
       {/* Header */}
       <header className="h-16 border-b border-slate-800 bg-slate-900/50 backdrop-blur-md flex items-center px-6 justify-between z-20 sticky top-0">
         <h1 className="text-2xl font-display font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple drop-shadow-[0_0_5px_rgba(0,243,255,0.5)]">
-          NEON ENTROPY
+          네온 엔트로피
         </h1>
 
         {/* Active Events Ticker */}
         <div className="flex-1 flex justify-center mx-4 gap-2 overflow-hidden">
           {isOverclocking && (
             <div className="px-3 py-1 bg-neon-yellow/20 border border-neon-yellow rounded text-neon-yellow text-xs font-mono animate-pulse font-bold flex items-center">
-              ⚡ OVERCLOCK ACTIVE ({Math.floor(overclockTimeLeft / 60)}:{(overclockTimeLeft % 60).toString().padStart(2, '0')})
+              ⚡ 오버클럭 활성 ({Math.floor(overclockTimeLeft / 60)}:{(overclockTimeLeft % 60).toString().padStart(2, '0')})
             </div>
           )}
           {activeEvents.map(e => (
             <div key={e.id} className="px-3 py-1 bg-slate-800 border border-t-2 border-slate-700 animate-pulse text-xs font-mono" style={{ borderTopColor: e.color }}>
               <span style={{ color: e.color }} className="font-bold mr-2">⚠ {e.name}</span>
-              {now > 0 && <span className="text-slate-300">ACTIVE ({((e.endTime - now) / 1000).toFixed(0)}s)</span>}
+              {now > 0 && <span className="text-slate-300">진행 중 ({((e.endTime - now) / 1000).toFixed(0)}s)</span>}
             </div>
           ))}
         </div>
@@ -289,13 +289,13 @@ function App() {
             onClick={() => setShowPrestige(true)}
             className="px-3 py-1 bg-neon-purple/20 border border-neon-purple rounded text-neon-purple text-xs hover:bg-neon-purple hover:text-white transition-all"
           >
-            NEURAL UPLOAD
+            신경망 업로드(환생)
           </button>
-          <div>INCOME: <span className={`text-green-400 ${isOverclocking ? 'font-bold drop-shadow-[0_0_5px_#4ade80]' : ''}`}>
+          <div>초당 수익: <span className={`text-green-400 ${isOverclocking ? 'font-bold drop-shadow-[0_0_5px_#4ade80]' : ''}`}>
             +{(incomeRate * (isOverclocking ? 3 : 1))}/s
           </span>
           </div>
-          <div>CREDITS: <span className="text-white">{Math.floor(credits).toLocaleString()}</span></div>
+          <div>자산: <span className="text-white">{Math.floor(credits).toLocaleString()}</span></div>
         </div>
       </header>
 
@@ -320,7 +320,7 @@ function App() {
                 : 'bg-slate-800 border-slate-600 text-slate-400 hover:border-white'
                 }`}
             >
-              {showHeatmap ? '🔥 HEATMAP ACTIVE' : '👁 ANALYSIS MODE'}
+              {showHeatmap ? '🔥 열지도 모드' : '👁 분석 모드'}
             </button>
           </div>
 
@@ -344,7 +344,7 @@ function App() {
                 }`}
             >
               <span className="text-2xl">⚡</span>
-              <span className="text-[10px] font-bold mt-1">OVERCLOCK</span>
+              <span className="text-[10px] font-bold mt-1">오버클럭</span>
             </button>
           </div>
         </section>
@@ -355,7 +355,7 @@ function App() {
           {/* Quest Widget */}
           <div className="p-4 border-b border-slate-700 bg-slate-800/80">
             <h2 className="font-display text-sm mb-2 text-neon-blue flex justify-between">
-              CURRENT OBJECTIVE
+              현재 목표
               <span className="text-slate-500 text-xs">#{currentQuestIndex + 1}</span>
             </h2>
             {currentQuest ? (
@@ -367,7 +367,7 @@ function App() {
                     onClick={claimQuest}
                     className="w-full py-1 bg-neon-green text-black font-bold text-xs rounded hover:bg-white animate-pulse"
                   >
-                    CLAIM REWARD (+{currentQuest.reward})
+                    보상 수령 (+{currentQuest.reward})
                   </button>
                 ) : (
                   <div className="w-full bg-slate-700 h-1 mt-2 rounded-full overflow-hidden">
@@ -376,24 +376,24 @@ function App() {
                 )}
               </div>
             ) : (
-              <div className="text-xs text-slate-500 text-center py-4">All Systems Operational. No Active Directives.</div>
+              <div className="text-xs text-slate-500 text-center py-4">모든 시스템 정상 가동 중. 활성 목표 없음.</div>
             )}
           </div>
 
           {/* Stats Panel */}
           <div className="p-4 border-b border-slate-800">
-            <h2 className="font-display text-lg mb-4 text-neon-pink">SYSTEM STATUS</h2>
+            <h2 className="font-display text-lg mb-4 text-neon-pink">시스템 상태</h2>
             <div className="space-y-2 font-mono text-sm">
               <div className="flex justify-between">
                 <span className="text-slate-400">FPS</span>
                 <span className="text-green-400">60</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">ENTROPY</span>
+                <span className="text-slate-400">엔트로피</span>
                 <span className="text-red-400">12%</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">NEURO-POINTS</span>
+                <span className="text-slate-400">뉴로 포인트</span>
                 <span className="text-neon-purple">{neuroPoints} NP</span>
               </div>
             </div>
@@ -406,7 +406,7 @@ function App() {
 
           {/* Building Shop */}
           <div className="flex-1 p-4 overflow-y-auto">
-            <h2 className="font-display text-lg mb-4 text-neon-green">CONSTRUCT</h2>
+            <h2 className="font-display text-lg mb-4 text-neon-green">건설</h2>
             <div className="space-y-3">
               {buildingsData.map(b => {
                 const count = inventory[b.id] || 0;
@@ -425,13 +425,13 @@ function App() {
                   >
                     <div className="flex justify-between items-start mb-1">
                       <span className="font-bold text-white group-hover:text-neon-blue">{b.name}</span>
-                      <span className="text-xs bg-slate-700 px-1 rounded text-slate-300">Lvl {count}</span>
+                      <span className="text-xs bg-slate-700 px-1 rounded text-slate-300">Lv {count}</span>
                     </div>
                     <p className="text-xs text-slate-400 mb-2">{b.description}</p>
 
                     <div className="flex justify-between items-center mt-2">
                       <div className="flex gap-2 text-[10px] font-mono">
-                        {b.stats.heat && <span className="text-red-400">HEAT {b.stats.heat}</span>}
+                        {b.stats.heat && <span className="text-red-400">발열 {b.stats.heat}</span>}
                       </div>
                       <div className={`font-mono font-bold text-sm ${canAfford ? 'text-neon-yellow' : 'text-red-500'}`}>
                         ${cost.toLocaleString()}
@@ -448,11 +448,11 @@ function App() {
 
       {/* Footer */}
       <footer className="h-12 border-t border-slate-800 bg-slate-900 flex items-center justify-center gap-6 text-[10px] text-slate-500 font-mono z-20">
-        <button onClick={() => navigateTo('game')} className="hover:text-neon-blue">GAME</button>
-        <button onClick={() => navigateTo('guide')} className="hover:text-neon-blue">GUIDE</button>
-        <button onClick={() => navigateTo('about')} className="hover:text-neon-blue">ABOUT</button>
-        <button onClick={() => navigateTo('privacy')} className="hover:text-neon-blue">PRIVACY</button>
-        <button onClick={() => navigateTo('tos')} className="hover:text-neon-blue">TERMS</button>
+        <button onClick={() => navigateTo('game')} className="hover:text-neon-blue">게임</button>
+        <button onClick={() => navigateTo('guide')} className="hover:text-neon-blue">가이드</button>
+        <button onClick={() => navigateTo('about')} className="hover:text-neon-blue">소개</button>
+        <button onClick={() => navigateTo('privacy')} className="hover:text-neon-blue">개인정보</button>
+        <button onClick={() => navigateTo('tos')} className="hover:text-neon-blue">약관</button>
         <span>© 2026 CARAVAGGIO AI</span>
       </footer>
     </div>

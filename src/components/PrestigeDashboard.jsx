@@ -12,9 +12,9 @@ const PrestigeDashboard = ({ currentCredits, neuroPoints, unlockedUpgrades, onUp
                 <div className="flex justify-between items-center p-6 border-b border-white/10 bg-gradient-to-r from-purple-900/20 to-transparent">
                     <div>
                         <h2 className="text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-white">
-                            NEURAL UPLOAD REPOSITORY
+                            신경망 업로드 저장소
                         </h2>
-                        <p className="text-slate-400 text-sm mt-1">Permanently upload consciousness to secure improvements.</p>
+                        <p className="text-slate-400 text-sm mt-1">의식을 영구적으로 업로드하여 시스템 성능을 강화하십시오.</p>
                     </div>
                     <button onClick={onClose} className="text-slate-500 hover:text-white font-mono text-xl">
                         [X]
@@ -26,14 +26,14 @@ const PrestigeDashboard = ({ currentCredits, neuroPoints, unlockedUpgrades, onUp
                     {/* Left: Upload Section */}
                     <div className="w-1/3 p-6 border-r border-white/10 flex flex-col justify-center items-center text-center">
                         <div className="mb-8">
-                            <p className="text-neon-blue font-mono text-sm mb-2">CURRENT NEURO-POINTS</p>
+                            <p className="text-neon-blue font-mono text-sm mb-2">현재 뉴로 포인트 (NP)</p>
                             <p className="text-5xl font-bold text-white drop-shadow-[0_0_10px_#fff]">{neuroPoints}</p>
                         </div>
 
                         <div className="w-full bg-slate-800/50 p-6 rounded-lg border border-slate-700 mb-6">
-                            <p className="text-slate-400 text-xs mb-2">UPLOAD REWARD</p>
+                            <p className="text-slate-400 text-xs mb-2">업로드 보상</p>
                             <p className="text-4xl font-bold text-neon-green mb-1">+{pendingNP}</p>
-                            <p className="text-slate-500 text-[10px] uppercase">Based on current credits</p>
+                            <p className="text-slate-500 text-[10px] uppercase">현재 자산 기반</p>
                         </div>
 
                         <button
@@ -44,14 +44,14 @@ const PrestigeDashboard = ({ currentCredits, neuroPoints, unlockedUpgrades, onUp
                                     ? 'bg-neon-purple text-white hover:bg-purple-600 hover:shadow-[0_0_30px_rgba(188,19,254,0.6)]'
                                     : 'bg-slate-800 text-slate-600 cursor-not-allowed'}`}
                         >
-                            INITIATE DATA UPLOAD
-                            {pendingNP > 0 && <span className="block text-xs font-normal mt-1 opacity-80">(Resets World)</span>}
+                            데이터 업로드 개시
+                            {pendingNP > 0 && <span className="block text-xs font-normal mt-1 opacity-80">(세계 재구축)</span>}
                         </button>
                     </div>
 
                     {/* Right: Tech Tree */}
                     <div className="flex-1 p-6 overflow-y-auto bg-slate-900/50">
-                        <h3 className="text-neon-yellow font-display mb-6">NEURAL AUGMENTATIONS</h3>
+                        <h3 className="text-neon-yellow font-display mb-6">신경망 증강</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {UPGRADE_TREE.map(upgrade => {
                                 const isUnlocked = unlockedUpgrades.includes(upgrade.id);
@@ -72,7 +72,7 @@ const PrestigeDashboard = ({ currentCredits, neuroPoints, unlockedUpgrades, onUp
                                             <h4 className={`font-bold ${isUnlocked ? 'text-neon-green' : 'text-white'}`}>{upgrade.name}</h4>
                                             <span className={`text-xs font-mono px-2 py-0.5 rounded
                          ${isUnlocked ? 'bg-neon-green text-black' : 'bg-slate-700 text-neon-purple'}`}>
-                                                {isUnlocked ? 'INSTALLED' : `${upgrade.cost} NP`}
+                                                {isUnlocked ? '장착됨' : `${upgrade.cost} NP`}
                                             </span>
                                         </div>
                                         <p className="text-sm text-slate-400">{upgrade.description}</p>

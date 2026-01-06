@@ -1,9 +1,9 @@
 [
   {
     "id": "belt_basic",
-    "name": "Basic Conveyor",
+    "name": "기초 컨베이어 벨트",
     "tier": 1,
-    "description": "Moves items at standard speed.",
+    "description": "표준 속도로 아이템을 운송합니다.",
     "price": 15,
     "stats": {
       "heat": 1,
@@ -13,9 +13,9 @@
   },
   {
     "id": "sorter_neon",
-    "name": "Neon Sorter",
+    "name": "네온 데이터 분류기",
     "tier": 1,
-    "description": "Splits items based on color data.",
+    "description": "색상 데이터를 기반으로 아이템을 분류합니다.",
     "price": 50,
     "stats": {
       "heat": 3,
@@ -25,9 +25,9 @@
   },
   {
     "id": "fan_small",
-    "name": "Small Cooling Fan",
+    "name": "초저온 냉각 팬",
     "tier": 1,
-    "description": "Reduces heat of adjacent tiles.",
+    "description": "인접한 타일의 발열을 감소시킵니다.",
     "price": 100,
     "stats": {
       "heat": -5,
@@ -37,9 +37,9 @@
   },
   {
     "id": "processor_t1",
-    "name": "Data Node T1",
+    "name": "데이터 노드 T1",
     "tier": 1,
-    "description": "Generates weak credits from data streams.",
+    "description": "데이터 스트림에서 기초적인 크레딧을 채굴합니다.",
     "price": 250,
     "stats": {
       "heat": 5,
@@ -49,9 +49,9 @@
   },
   {
     "id": "pipe_fluid",
-    "name": "Coolant Pipe",
+    "name": "냉각수 파이프",
     "tier": 2,
-    "description": "Transports liquid coolant. Leaks allow heat dissipation.",
+    "description": "액체 냉각수를 운송합니다. 누수가 발생하면 열이 분산됩니다.",
     "price": 1200,
     "stats": {
       "heat": -2,
@@ -61,9 +61,9 @@
   },
   {
     "id": "pump_hydro",
-    "name": "Hydro Pump",
+    "name": "고압 하이드로 펌프",
     "tier": 2,
-    "description": "Pushes coolant. High pressure.",
+    "description": "강력한 압력으로 냉각수를 밀어냅니다.",
     "price": 3500,
     "stats": {
       "heat": 15,
@@ -73,9 +73,9 @@
   },
   {
     "id": "processor_t2",
-    "name": "Liquid Frame T2",
+    "name": "수랭식 프레임 T2",
     "tier": 2,
-    "description": "Liquid-cooled processing unit. 5x T1 output.",
+    "description": "액체 냉각 방식의 처리 장치입니다. T1보다 5배 효율적입니다.",
     "price": 8000,
     "stats": {
       "heat": 25,
@@ -85,9 +85,9 @@
   },
   {
     "id": "drone_port",
-    "name": "Drone Station",
+    "name": "드론 스테이션",
     "tier": 3,
-    "description": "Deploys logistics drones. Ignores terrain.",
+    "description": "물류 드론을 배치합니다. 지형을 무시하고 이동합니다.",
     "price": 45000,
     "stats": {
       "heat": 40,
@@ -97,9 +97,9 @@
   },
   {
     "id": "drone_charger",
-    "name": "Induction Pad",
+    "name": "자기 유도 충전 패드",
     "tier": 3,
-    "description": "Charges nearby drones.",
+    "description": "주변의 드론을 충전합니다.",
     "price": 120000,
     "stats": {
       "heat": 60,
@@ -109,9 +109,9 @@
   },
   {
     "id": "processor_t3",
-    "name": "Swarm Core T3",
+    "name": "군집 연산 코어 T3",
     "tier": 3,
-    "description": "Distributed processing via drone swarm. 25x T1 output.",
+    "description": "드론 군집을 통한 분산 처리를 수행합니다. T1의 25배 효율입니다.",
     "price": 250000,
     "stats": {
       "heat": 100,
@@ -121,9 +121,9 @@
   },
   {
     "id": "quantum_link",
-    "name": "Q-Link",
+    "name": "양자 도약 연결기 (Q-Link)",
     "tier": 4,
-    "description": "Instant item transport between nodes.",
+    "description": "노드 간 즉각적인 아이템 전송이 가능합니다.",
     "price": 1500000,
     "stats": {
       "heat": 200,
@@ -133,9 +133,9 @@
   },
   {
     "id": "cryo_stasis",
-    "name": "Cryo Stasis",
+    "name": "절대영도 동결기",
     "tier": 4,
-    "description": "Freezes heat generation in area. High power cost.",
+    "description": "해당 구역의 발열 생성을 멈춥니다. 막대한 전력을 소모합니다.",
     "price": 4500000,
     "stats": {
       "heat": -500,
@@ -145,9 +145,9 @@
   },
   {
     "id": "processor_t4",
-    "name": "Q-Bit Loom T4",
+    "name": "큐비트 직조기 T4",
     "tier": 4,
-    "description": "Quantum superposition processing. 125x T1 output.",
+    "description": "양자 중첩 연산을 수행합니다. T1의 125배 효율입니다.",
     "price": 12000000,
     "stats": {
       "heat": 400,
@@ -157,9 +157,9 @@
   },
   {
     "id": "antimatter_containment",
-    "name": "A.M. Containment",
+    "name": "반물질 격리실",
     "tier": 5,
-    "description": "Generates massive power but risks explosion.",
+    "description": "막대한 에너지를 생성하지만, 폭발의 위험이 있습니다.",
     "price": 85000000,
     "stats": {
       "heat": 2000,
@@ -169,9 +169,9 @@
   },
   {
     "id": "processor_t5",
-    "name": "Zero-Point Engine T5",
+    "name": "제로 포인트 엔진 T5",
     "tier": 5,
-    "description": "Harvests vacuum energy. 625x T1 output.",
+    "description": "진공 에너지를 수확합니다. T1의 625배 효율입니다.",
     "price": 250000000,
     "stats": {
       "heat": 5000,
@@ -181,9 +181,9 @@
   },
   {
     "id": "void_siphon",
-    "name": "Void Siphon",
+    "name": "공허의 사이펀",
     "tier": 6,
-    "description": "Extracts value from non-existence.",
+    "description": "비존재로부터 가치를 추출합니다. 소음을 흡수합니다.",
     "price": 5000000000,
     "stats": {
       "heat": 0,
@@ -193,9 +193,9 @@
   },
   {
     "id": "processor_t6",
-    "name": "Event Horizon T6",
+    "name": "사건의 지평선 T6",
     "tier": 6,
-    "description": "Computes using singularity physics. 3125x T1 output.",
+    "description": "특이점 물리학을 이용해 연산합니다. T1의 3125배 효율입니다.",
     "price": 15000000000,
     "stats": {
       "heat": 20000,
@@ -205,9 +205,9 @@
   },
   {
     "id": "neuro_terminal",
-    "name": "Neuro Terminal",
+    "name": "뉴로 터미널",
     "tier": 7,
-    "description": "The gateway to the digital afterlife.",
+    "description": "디지털 사후세계로 향하는 관문입니다.",
     "price": 1000000000000,
     "stats": {
       "heat": 100000,
@@ -217,9 +217,9 @@
   },
   {
     "id": "processor_t7",
-    "name": "Omniscience Core T7",
+    "name": "전지전능 코어 T7",
     "tier": 7,
-    "description": "Infinite calculation. 15625x T1 output.",
+    "description": "무한한 연산 능력을 제공합니다. T1의 15625배 효율입니다.",
     "price": 5000000000000,
     "stats": {
       "heat": 500000,

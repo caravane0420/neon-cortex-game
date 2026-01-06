@@ -98,7 +98,7 @@ const GameCanvas = ({ showHeatmap, inventory, buildingsData }) => {
         // Building Icon/Text
         ctx.fillStyle = b.color;
         ctx.font = '10px monospace';
-        ctx.fillText('BLD', b.x + 8, b.y + 24);
+        ctx.fillText('건물', b.x + 8, b.y + 24);
       });
 
       // 4. Heatmap Overlay

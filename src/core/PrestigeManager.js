@@ -6,23 +6,23 @@
 export const UPGRADE_TREE = [
     {
         id: 'heat_opt_1',
-        name: 'Thermal Shunting',
+        name: '열 분산 회로',
         cost: 10,
-        description: 'Reduces base heat generation by 10%.',
+        description: '기본 발열 생성을 10% 감소시킵니다.',
         effect: { type: 'heat_reduction', value: 0.1 }
     },
     {
         id: 'grid_stab_1',
-        name: 'Quantum Grid',
+        name: '양자 그리드',
         cost: 25,
-        description: 'Increases power efficiency by 20%.',
+        description: '전력 효율을 20% 증가시킵니다.',
         effect: { type: 'power_efficiency', value: 0.2 }
     },
     {
         id: 'viral_ret_1',
-        name: 'Viral Retention',
+        name: '바이럴 유지력',
         cost: 50,
-        description: 'Ad bonuses remain active 50% longer (Persistent).',
+        description: '광고 부스트 지속시간이 50% 증가합니다.',
         effect: { type: 'ad_duration', value: 0.5 }
     }
 ];
