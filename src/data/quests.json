@@ -1,0 +1,55 @@
+[
+    {
+        "id": "q1_basics",
+        "title": "Initial Logistics",
+        "description": "Establish a basic transport line. Build 3 Basic Belts.",
+        "condition": {
+            "type": "build",
+            "target": "belt_basic",
+            "count": 3
+        },
+        "reward": 500
+    },
+    {
+        "id": "q2_sorting",
+        "title": "Entropy Sorting",
+        "description": "Begin processing data. Construct 1 Neon Sorter.",
+        "condition": {
+            "type": "build",
+            "target": "sorter_neon",
+            "count": 1
+        },
+        "reward": 800
+    },
+    {
+        "id": "q3_cooling",
+        "title": "Thermal Control",
+        "description": "Manage system heat. Install 2 Cooling Fans.",
+        "condition": {
+            "type": "build",
+            "target": "fan_small",
+            "count": 2
+        },
+        "reward": 1200
+    },
+    {
+        "id": "q4_expansion",
+        "title": "Network Expansion",
+        "description": "Scale up operations. Own 10 total buildings.",
+        "condition": {
+            "type": "total_count",
+            "count": 10
+        },
+        "reward": 2500
+    },
+    {
+        "id": "q5_prestige",
+        "title": "Neural Threshold",
+        "description": "Prepare for upload. Reach 5000 Credits.",
+        "condition": {
+            "type": "balance",
+            "amount": 5000
+        },
+        "reward": 1000
+    }
+]

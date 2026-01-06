@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+
+  /* Custom Scrollbar for Cyberpunk Feel */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00f3ff;
+  }
+
+  body {
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    /* Prevent body scroll, let app containers handle it */
+  }
+
+  #root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mobile Responsiveness Improvements */
+  @media (max-width: 768px) {
+    #root {
+      height: auto;
+      min-height: 100vh;
+    }
+
+    /* Make canvas container scrollable on mobile if needed */
+    canvas {
+      max-width: 100%;
+      height: auto !important;
+    }
+  }

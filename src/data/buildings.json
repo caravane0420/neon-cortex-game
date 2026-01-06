@@ -1,0 +1,239 @@
+const buildings = [
+  // --- TIER 1: LOGISTICS (Basic) ---
+  {
+    "id": "belt_basic",
+    "name": "Basic Conveyor",
+    "tier": 1,
+    "description": "Moves items at standard speed.",
+    "price": 15,
+    "stats": {
+      "heat": 1,
+      "power": 1,
+      "noise": 1
+    }
+  },
+  {
+    "id": "sorter_neon",
+    "name": "Neon Sorter",
+    "tier": 1,
+    "description": "Splits items based on color data.",
+    "price": 50,
+    "stats": {
+      "heat": 3,
+      "power": 2,
+      "noise": 5
+    }
+  },
+  {
+    "id": "fan_small",
+    "name": "Small Cooling Fan",
+    "tier": 1,
+    "description": "Reduces heat of adjacent tiles.",
+    "price": 100,
+    "stats": {
+      "heat": -5,
+      "power": 5,
+      "noise": 10
+    }
+  },
+  {
+    "id": "processor_t1",
+    "name": "Data Node T1",
+    "tier": 1,
+    "description": "Generates weak credits from data streams.",
+    "price": 250,
+    "stats": {
+      "heat": 5,
+      "power": 3,
+      "income": 1
+    }
+  },
+  // --- TIER 2: FLUID DYNAMICS (Liquid Cooling) ---
+  {
+    "id": "pipe_fluid",
+    "name": "Coolant Pipe",
+    "tier": 2,
+    "description": "Transports liquid coolant. Leaks allow heat dissipation.",
+    "price": 1200,
+    "stats": {
+      "heat": -2,
+      "power": 0,
+      "noise": 0
+    }
+  },
+  {
+    "id": "pump_hydro",
+    "name": "Hydro Pump",
+    "tier": 2,
+    "description": "Pushes coolant. High pressure.",
+    "price": 3500,
+    "stats": {
+      "heat": 15,
+      "power": 20,
+      "noise": 15
+    }
+  },
+  {
+    "id": "processor_t2",
+    "name": "Liquid Frame T2",
+    "tier": 2,
+    "description": "Liquid-cooled processing unit. 5x T1 output.",
+    "price": 8000,
+    "stats": {
+      "heat": 25,
+      "power": 15,
+      "income": 5
+    }
+  },
+  // --- TIER 3: AUTONOMOUS DRONES (Airborne) ---
+  {
+    "id": "drone_port",
+    "name": "Drone Station",
+    "tier": 3,
+    "description": "Deploys logistics drones. Ignores terrain.",
+    "price": 45000,
+    "stats": {
+      "heat": 40,
+      "power": 60,
+      "noise": 50
+    }
+  },
+  {
+    "id": "drone_charger",
+    "name": "Induction Pad",
+    "tier": 3,
+    "description": "Charges nearby drones.",
+    "price": 120000,
+    "stats": {
+      "heat": 60,
+      "power": 100,
+      "noise": 5
+    }
+  },
+  {
+    "id": "processor_t3",
+    "name": "Swarm Core T3",
+    "tier": 3,
+    "description": "Distributed processing via drone swarm. 25x T1 output.",
+    "price": 250000,
+    "stats": {
+      "heat": 100,
+      "power": 150,
+      "income": 25
+    }
+  },
+  // --- TIER 4: QUANTUM ENTANGLEMENT ---
+  {
+    "id": "quantum_link",
+    "name": "Q-Link",
+    "tier": 4,
+    "description": "Instant item transport between nodes.",
+    "price": 1.5e6,
+    "stats": {
+      "heat": 200,
+      "power": 500,
+      "noise": 0
+    }
+  },
+  {
+    "id": "cryo_stasis",
+    "name": "Cryo Stasis",
+    "tier": 4,
+    "description": "Freezes heat generation in area. High power cost.",
+    "price": 4.5e6,
+    "stats": {
+      "heat": -500,
+      "power": 1000,
+      "noise": 20
+    }
+  },
+  {
+    "id": "processor_t4",
+    "name": "Q-Bit Loom T4",
+    "tier": 4,
+    "description": "Quantum superposition processing. 125x T1 output.",
+    "price": 1.2e7,
+    "stats": {
+      "heat": 400,
+      "power": 800,
+      "income": 125
+    }
+  },
+  // --- TIER 5: ANTIMATTER ---
+  {
+    "id": "antimatter_containment",
+    "name": "A.M. Containment",
+    "tier": 5,
+    "description": "Generates massive power but risks explosion.",
+    "price": 8.5e7,
+    "stats": {
+      "heat": 2000,
+      "power": 5000,
+      "noise": 500
+    }
+  },
+  {
+    "id": "processor_t5",
+    "name": "Zero-Point Engine T5",
+    "tier": 5,
+    "description": "Harvests vacuum energy. 625x T1 output.",
+    "price": 2.5e8,
+    "stats": {
+      "heat": 5000,
+      "power": 2500,
+      "income": 625
+    }
+  },
+  // --- TIER 6: VOID MANIPULATION ---
+  {
+    "id": "void_siphon",
+    "name": "Void Siphon",
+    "tier": 6,
+    "description": "Extracts value from non-existence.",
+    "price": 5.0e9,
+    "stats": {
+      "heat": 0,
+      "power": 50000,
+      "noise": -100
+    }
+  },
+  {
+    "id": "processor_t6",
+    "name": "Event Horizon T6",
+    "tier": 6,
+    "description": "Computes using singularity physics. 3125x T1 output.",
+    "price": 1.5e10,
+    "stats": {
+      "heat": 20000,
+      "power": 100000,
+      "income": 3125
+    }
+  },
+  // --- TIER 7: NEURO-TRANSCENDENCE ---
+  {
+    "id": "neuro_terminal",
+    "name": "Neuro Terminal",
+    "tier": 7,
+    "description": "The gateway to the digital afterlife.",
+    "price": 1.0e12,
+    "stats": {
+      "heat": 100000,
+      "power": 1.0e6,
+      "noise": 1000
+    }
+  },
+  {
+    "id": "processor_t7",
+    "name": "Omniscience Core T7",
+    "tier": 7,
+    "description": "Infinite calculation. 15625x T1 output.",
+    "price": 5.0e12,
+    "stats": {
+      "heat": 500000,
+      "power": 5.0e6,
+      "income": 15625
+    }
+  }
+];
+
+export default buildings;
