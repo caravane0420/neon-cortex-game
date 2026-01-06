@@ -58,7 +58,16 @@ function App() {
   const [overclockActive, setOverclockActive] = useState(false)
   const [overclockTimeLeft, setOverclockTimeLeft] = useState(0)
   const [currentQuestIndex, setCurrentQuestIndex] = useState(0)
-  const [questCompleted, setQuestCompleted] = useState(false)
+
+  // Time State for UI updates
+  const [now, setNow] = useState(0);
+
+  // Global Timer
+  useEffect(() => {
+    // We start the interval to update time. Initial 0 is accepted to prevent hydration mismatch or sync setState error.
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, []);
 
   // Load Game State & Prestige Data
   useEffect(() => {
@@ -74,7 +83,7 @@ function App() {
         setIncomeRate(mockedIncome);
 
         // Offline Progress
-        const offlineReport = EconomyEngine.simulateOfflineProgress(data.lastSaveTime, mockedIncome, data.inventory);
+        const offlineReport = EconomyEngine.simulateOfflineProgress(data.lastSaveTime, mockedIncome);
         if (offlineReport.credits > 0) {
           setOfflineEarnings(offlineReport.credits);
         }
@@ -109,31 +118,8 @@ function App() {
         setOverclockTimeLeft(prev => prev - 1);
       }, 1000);
       return () => clearInterval(timer);
-    } else {
-      setOverclockActive(false);
     }
   }, [overclockTimeLeft]);
-
-  // Quest Tracker
-  useEffect(() => {
-    const quest = questsData[currentQuestIndex];
-    if (!quest || questCompleted) return;
-
-    let isComplete = false;
-    if (quest.condition.type === 'build') {
-      const count = inventory[quest.condition.target] || 0;
-      if (count >= quest.condition.count) isComplete = true;
-    } else if (quest.condition.type === 'total_count') {
-      const total = Object.values(inventory).reduce((a, b) => a + b, 0);
-      if (total >= quest.condition.count) isComplete = true;
-    } else if (quest.condition.type === 'balance') {
-      if (credits >= quest.condition.amount) isComplete = true;
-    }
-
-    if (isComplete) {
-      setQuestCompleted(true);
-    }
-  }, [inventory, credits, currentQuestIndex, questCompleted]);
 
   // Auto-Save Loop
   useEffect(() => {
@@ -154,6 +140,28 @@ function App() {
     savePrestigeData({ neuroPoints, unlockedUpgrades });
   }, [neuroPoints, unlockedUpgrades]);
 
+  // --- DERIVED STATE ---
+  const isOverclocking = overclockActive && overclockTimeLeft > 0;
+
+  const currentQuest = questsData[currentQuestIndex];
+  const isQuestComplete = (() => {
+    if (!currentQuest) return false;
+    if (currentQuest.condition.type === 'build') {
+      const count = inventory[currentQuest.condition.target] || 0;
+      return count >= currentQuest.condition.count;
+    }
+    if (currentQuest.condition.type === 'total_count') {
+      const total = Object.values(inventory).reduce((a, b) => a + b, 0);
+      return total >= currentQuest.condition.count;
+    }
+    if (currentQuest.condition.type === 'balance') {
+      return credits >= currentQuest.condition.amount;
+    }
+    return false;
+  })();
+
+
+  // --- HANDLERS ---
   const handleBuy = (building) => {
     const currentCount = inventory[building.id] || 0;
     const basePrice = building.price || 100;
@@ -184,7 +192,7 @@ function App() {
     setInventory({});
     setIncomeRate(0);
     setCurrentQuestIndex(0);
-    setQuestCompleted(false);
+    // setQuestCompleted(false); // Derived now
 
     setNeuroPoints(prev => prev + earnedNP);
     setShowPrestige(false);
@@ -208,14 +216,13 @@ function App() {
   };
 
   const claimQuest = () => {
-    if (!questCompleted) return;
+    if (!isQuestComplete) return;
     const quest = questsData[currentQuestIndex];
     setCredits(prev => prev + quest.reward);
-    setQuestCompleted(false);
+    // setQuestCompleted(false); // Derived logic automatically updates when index changes
     setCurrentQuestIndex(prev => prev + 1);
   };
 
-  const currentQuest = questsData[currentQuestIndex];
 
   // --- RENDER LOGIC ---
   if (currentPage !== 'game') {
@@ -264,7 +271,7 @@ function App() {
 
         {/* Active Events Ticker */}
         <div className="flex-1 flex justify-center mx-4 gap-2 overflow-hidden">
-          {overclockActive && (
+          {isOverclocking && (
             <div className="px-3 py-1 bg-neon-yellow/20 border border-neon-yellow rounded text-neon-yellow text-xs font-mono animate-pulse font-bold flex items-center">
               ⚡ OVERCLOCK ACTIVE ({Math.floor(overclockTimeLeft / 60)}:{(overclockTimeLeft % 60).toString().padStart(2, '0')})
             </div>
@@ -272,7 +279,7 @@ function App() {
           {activeEvents.map(e => (
             <div key={e.id} className="px-3 py-1 bg-slate-800 border border-t-2 border-slate-700 animate-pulse text-xs font-mono" style={{ borderTopColor: e.color }}>
               <span style={{ color: e.color }} className="font-bold mr-2">⚠ {e.name}</span>
-              <span className="text-slate-300">ACTIVE ({((e.endTime - Date.now()) / 1000).toFixed(0)}s)</span>
+              {now > 0 && <span className="text-slate-300">ACTIVE ({((e.endTime - now) / 1000).toFixed(0)}s)</span>}
             </div>
           ))}
         </div>
@@ -284,8 +291,8 @@ function App() {
           >
             NEURAL UPLOAD
           </button>
-          <div>INCOME: <span className={`text-green-400 ${overclockActive ? 'font-bold drop-shadow-[0_0_5px_#4ade80]' : ''}`}>
-            +{(incomeRate * (overclockActive ? 3 : 1))}/s
+          <div>INCOME: <span className={`text-green-400 ${isOverclocking ? 'font-bold drop-shadow-[0_0_5px_#4ade80]' : ''}`}>
+            +{(incomeRate * (isOverclocking ? 3 : 1))}/s
           </span>
           </div>
           <div>CREDITS: <span className="text-white">{Math.floor(credits).toLocaleString()}</span></div>
@@ -309,8 +316,8 @@ function App() {
             <button
               onClick={() => setShowHeatmap(!showHeatmap)}
               className={`px-3 py-2 rounded text-xs font-bold border transition-all ${showHeatmap
-                  ? 'bg-red-900/50 border-red-500 text-red-200'
-                  : 'bg-slate-800 border-slate-600 text-slate-400 hover:border-white'
+                ? 'bg-red-900/50 border-red-500 text-red-200'
+                : 'bg-slate-800 border-slate-600 text-slate-400 hover:border-white'
                 }`}
             >
               {showHeatmap ? '🔥 HEATMAP ACTIVE' : '👁 ANALYSIS MODE'}
@@ -328,10 +335,10 @@ function App() {
           {/* Overclock Button */}
           <div className="absolute bottom-8 right-8 z-10">
             <button
-              disabled={overclockActive}
+              disabled={isOverclocking}
               onClick={activateOverclock}
               className={`flex flex-col items-center justify-center w-24 h-24 rounded-full border-4 shadow-[0_0_20px_rgba(250,255,0,0.3)] transition-all
-                  ${overclockActive
+                  ${isOverclocking
                   ? 'bg-slate-800 border-slate-600 opacity-50 cursor-default'
                   : 'bg-slate-900 border-neon-yellow hover:bg-neon-yellow hover:text-black hover:scale-105 cursor-pointer'
                 }`}
@@ -352,10 +359,10 @@ function App() {
               <span className="text-slate-500 text-xs">#{currentQuestIndex + 1}</span>
             </h2>
             {currentQuest ? (
-              <div className={`border rounded p-3 transition-all ${questCompleted ? 'border-neon-green bg-green-900/20' : 'border-slate-600 bg-slate-900'}`}>
+              <div className={`border rounded p-3 transition-all ${isQuestComplete ? 'border-neon-green bg-green-900/20' : 'border-slate-600 bg-slate-900'}`}>
                 <h3 className="font-bold text-white text-sm">{currentQuest.title}</h3>
                 <p className="text-xs text-slate-400 mb-2">{currentQuest.description}</p>
-                {questCompleted ? (
+                {isQuestComplete ? (
                   <button
                     onClick={claimQuest}
                     className="w-full py-1 bg-neon-green text-black font-bold text-xs rounded hover:bg-white animate-pulse"

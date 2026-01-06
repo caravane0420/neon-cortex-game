@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-globals */
+
 
 /**
  * physics.worker.js
@@ -33,3 +33,26 @@ self.onmessage = (e) => {
         items.push(payload);
     }
 };
+
+function loop() {
+    items.forEach(item => {
+        item.x += item.vx;
+        item.y += item.vy;
+
+        // Bounce/Wrap logic
+        if (item.x < 0 || item.x > GRID_WIDTH) item.vx *= -1;
+        if (item.y < 0 || item.y > GRID_HEIGHT) item.vy *= -1;
+    });
+
+    // Culling based on viewport
+    const visibleItems = items.filter(i =>
+        i.x >= viewport.x - 20 && i.x <= viewport.x + viewport.w + 20 &&
+        i.y >= viewport.y - 20 && i.y <= viewport.y + viewport.h + 20
+    );
+
+    self.postMessage({ type: 'UPDATE', items: visibleItems }); // Logic: only send what's needed for render? 
+    // Actually GameCanvas renders itemsRef.current. If we only send visible, items outside will stick?
+    // GameCanvas renders what it receives. If we partially send, the others disappear (good for culling).
+
+    setTimeout(loop, 1000 / 60);
+}

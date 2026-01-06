@@ -72,7 +72,7 @@ export class EconomyEngine {
    * to check if efficiencies changed (e.g. night/day cycles, although not implemented yet).
    * For now, it uses the average income rate at save time.
    */
-    static simulateOfflineProgress(lastSaveTime, lastIncomeRate, inventory) {
+    static simulateOfflineProgress(lastSaveTime, lastIncomeRate) {
         if (!lastSaveTime) return { credits: 0, seconds: 0 };
 
         const now = Date.now();

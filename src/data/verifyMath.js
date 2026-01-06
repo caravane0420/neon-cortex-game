@@ -2,12 +2,9 @@
  * Verification Simulation
  * Simulates optimal play (reinvesting 100% income) to estimate time to complete T7.
  */
-const fs = require('fs');
-const path = require('path');
-
-const buildingsData = require('./buildings.json');
+import buildingsData from './buildings.json';
 // Mocking tech tree stats heavily as we just want generic flow
-// const techTree = require('./techTree.json');
+// import techTree from './techTree.json';
 
 // Simulation Params
 const TARGET_CREDITS = 5.0e12; // T7 Processor Price
@@ -26,7 +23,7 @@ let state = {
 
 console.log('--- STARTING SIMULATION ---');
 
-const efficient Buildings = buildingsData.filter(b => b.stats.income).sort((a, b) => a.price - b.price);
+const efficientBuildings = buildingsData.filter(b => b.stats.income).sort((a, b) => a.price - b.price);
 
 while (state.credits < TARGET_CREDITS && state.timeElapsed < 2000000) { // Cap at ~550 hours to prevent inf loop
     // 1. Earn Income
