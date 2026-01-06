@@ -2,49 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* 1. 스크롤바 커스텀 (최상위 레벨로 이동) */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-  /* Custom Scrollbar for Cyberpunk Feel */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
 
-  ::-webkit-scrollbar-track {
-    background: #0f172a;
-  }
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
 
-  ::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 4px;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #00f3ff;
+}
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #00f3ff;
-  }
+/* 2. Body 기본 스타일 */
+body {
+  background-color: black;
+  color: white;
+  overflow: hidden;
+  /* 앱 컨테이너에서 스크롤 처리 */
+  margin: 0;
+}
 
-  body {
-    background-color: black;
-    color: white;
-    overflow: hidden;
-    /* Prevent body scroll, let app containers handle it */
-  }
+/* 3. Root 컨테이너 */
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
+/* 4. 모바일 반응형 처리 */
+@media (max-width: 768px) {
   #root {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
   }
 
-  /* Mobile Responsiveness Improvements */
-  @media (max-width: 768px) {
-    #root {
-      height: auto;
-      min-height: 100vh;
-    }
-
-    /* Make canvas container scrollable on mobile if needed */
-    canvas {
-      max-width: 100%;
-      height: auto !important;
-    }
+  /* 캔버스 사이즈 자동 조절 */
+  canvas {
+    max-width: 100%;
+    height: auto !important;
   }
+}
